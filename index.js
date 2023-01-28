@@ -12,6 +12,7 @@ import { register } from './controllers/auth.js'
 
 // CONFIGURATION
 //testing
+// just for the sake of testing 
 const __filename = fileURLToPath(import.meta.url)
 const __direname = path.dirname(__filename)
 dotenv.config()
