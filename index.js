@@ -8,6 +8,7 @@ import cors from 'cors'
 import multer from 'multer'
 import path from 'path'
 import { fileURLToPath } from 'url'
+import { register } from './controllers/auth'
 
 // CONFIGURATION
 const __filename = fileURLToPath(import.meta.url)
@@ -33,11 +34,15 @@ const storage = multer.diskStorage({
 
 
 
-        const upload = multer({ storage });
 
 
     }
 })
+const upload = multer({ storage });
+
+
+//Routes with Files
+app.post('/auth/register', upload.single('picture'), register)
 
 // Mongoose setup (Database)
 const PORT = process.env.PORT || 4567
