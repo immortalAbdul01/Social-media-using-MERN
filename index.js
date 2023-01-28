@@ -45,7 +45,7 @@ const upload = multer({ storage });
 
 
 //Routes with Files
-app.post('/auth/register', register)
+app.post('/auth/register', upload.single('picture'), register)
 
 // Mongoose setup (Database)
 const PORT = process.env.PORT || 4567
