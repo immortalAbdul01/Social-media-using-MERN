@@ -8,9 +8,10 @@ import cors from 'cors'
 import multer from 'multer'
 import path from 'path'
 import { fileURLToPath } from 'url'
-import { register } from './controllers/auth'
+import { register } from './controllers/auth.js'
 
 // CONFIGURATION
+//testing
 const __filename = fileURLToPath(import.meta.url)
 const __direname = path.dirname(__filename)
 dotenv.config()
