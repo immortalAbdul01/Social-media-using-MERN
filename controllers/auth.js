@@ -1,10 +1,10 @@
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
-import User from './../models/User'
+import User from './../models/User.js'
 
 
 // Register User
-exports.register = async (req, res) => {
+export const register = async (req, res) => {
     try {
         const {
             firstName,

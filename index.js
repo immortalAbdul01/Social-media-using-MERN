@@ -13,6 +13,7 @@ import { register } from './controllers/auth.js'
 // CONFIGURATION
 //testing
 // just for the sake of testing 
+mongoose.set({ strictQuery: true })
 const __filename = fileURLToPath(import.meta.url)
 const __direname = path.dirname(__filename)
 dotenv.config()
@@ -44,13 +45,15 @@ const upload = multer({ storage });
 
 
 //Routes with Files
-app.post('/auth/register', upload.single('picture'), register)
+app.post('/auth/register', register)
 
 // Mongoose setup (Database)
 const PORT = process.env.PORT || 4567
 mongoose.connect(process.env.MONGO_URL, {
-    // useNewUrlParser: true,
-    useUnifiedTopology: true
+    useNewUrlParser: true,
+    // strictQuery: true,
+    useUnifiedTopology: true,
+
 }).then(() => {
     app.listen(PORT, () => {
         console.log(`server started on ${PORT}`);
