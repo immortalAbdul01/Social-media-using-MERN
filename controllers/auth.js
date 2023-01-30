@@ -37,3 +37,40 @@ export const register = async (req, res) => {
         console.log(err);
     }
 }
+
+
+
+/// LogIN
+export const login = async (req, res) => {
+    try {
+        const { email, password } = req.body
+        const user = await User.findOne({ email: email })
+        if (!user) {
+            return res.status(400).json({
+                status: 'failed',
+                message: 'improper email please register if you dont have a account '
+            })
+        }
+        const isMatch = await bcrypt.compare(password, user.password)
+        if (!isMatch) {
+            return res.status(400).json({
+                status: 'failed',
+                message: 'wrong password '
+            })
+
+        }
+        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET)
+        delete user.password
+
+        res.status(200).json({
+            token,
+            user
+        })
+
+    } catch (err) {
+        res.status(404).json({
+            status: 'failed',
+            message: err.message
+        })
+    }
+}

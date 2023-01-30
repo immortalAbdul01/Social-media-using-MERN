@@ -7,6 +7,7 @@ import helmet from 'helmet'
 import cors from 'cors'
 import multer from 'multer'
 import path from 'path'
+import authRoutes from './routes/auth.js'
 import { fileURLToPath } from 'url'
 import { register } from './controllers/auth.js'
 
@@ -46,6 +47,9 @@ const upload = multer({ storage });
 
 //Routes with Files
 app.post('/auth/register', upload.single('picture'), register)
+
+// Routes
+app.use('/auth', authRoutes)
 
 // Mongoose setup (Database)
 const PORT = process.env.PORT || 4567
