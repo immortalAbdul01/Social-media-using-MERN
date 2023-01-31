@@ -11,7 +11,9 @@ import authRoutes from './routes/auth.js'
 import { fileURLToPath } from 'url'
 import { verifyToken } from './middlewares/auth.js'
 import { register } from './controllers/auth.js'
+import { createPost } from './controllers/post.js'
 import userRoutes from './routes/users.js'
+import postRoutes from './routes/post.js'
 
 // CONFIGURATION
 //testing
@@ -49,10 +51,12 @@ const upload = multer({ storage });
 
 //Routes with Files
 app.post('/auth/register', upload.single('picture'), register)
+app.post('/posts', verifyToken, upload.single('picture'), createPost)
 
 // Routes
 app.use('/auth', authRoutes)
 app.use('/users', userRoutes)
+app.use('/posts', postRoutes)
 
 // Mongoose setup (Database)
 const PORT = process.env.PORT || 4567
