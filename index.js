@@ -9,7 +9,9 @@ import multer from 'multer'
 import path from 'path'
 import authRoutes from './routes/auth.js'
 import { fileURLToPath } from 'url'
+import { verifyToken } from './middlewares/auth.js'
 import { register } from './controllers/auth.js'
+import userRoutes from './routes/users.js'
 
 // CONFIGURATION
 //testing
@@ -50,6 +52,7 @@ app.post('/auth/register', upload.single('picture'), register)
 
 // Routes
 app.use('/auth', authRoutes)
+app.use('/users', userRoutes)
 
 // Mongoose setup (Database)
 const PORT = process.env.PORT || 4567
