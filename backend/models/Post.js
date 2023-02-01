@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 const postSchema = mongoose.Schema({
-    UserId: {
+    userId: {
         type: String,
         required: true,
     },
@@ -24,7 +24,7 @@ const postSchema = mongoose.Schema({
         of: Boolean
     },
     comments: {
-        types: Array,
+        type: Array,
         default: []
     }
 }, {

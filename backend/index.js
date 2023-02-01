@@ -14,7 +14,9 @@ import { register } from './controllers/auth.js'
 import { createPost } from './controllers/post.js'
 import userRoutes from './routes/users.js'
 import postRoutes from './routes/post.js'
-
+import User from './models/User.js'
+import Post from './models/Post.js'
+import { users, posts } from './data/index.js'
 // CONFIGURATION
 //testing
 // just for the sake of testing 
@@ -68,6 +70,8 @@ mongoose.connect(process.env.MONGO_URL, {
 }).then(() => {
     app.listen(PORT, () => {
         console.log(`server started on ${PORT}`);
+        // User.insertMany(users)
+        // Post.insertMany(posts)
     })
 }).catch((err) => {
     console.log(`${err} oppps error occured`);
