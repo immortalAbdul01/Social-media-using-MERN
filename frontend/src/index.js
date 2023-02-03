@@ -9,7 +9,7 @@ import {
   persistStore,
   persistReducer,
   FLUSH,
-  REHYDRATED,
+  REHYDRATE,
   PAUSE,
   PERSIST,
   PURGE,
